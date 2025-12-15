@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Let's Workout | 健身訓練指南</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- 導覽列 -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo">Let's Workout | 健身訓練指南</div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <!-- ① 首頁 -->
+          <li><a href="#hero">首頁</a></li>
+
+          <!-- ② 訓練部位（下拉） -->
+          <li class="dropdown">
+            <button class="dropdown-toggle">
+              訓練部位 ▾
+            </button>
+            <ul class="dropdown-menu">
+              <li><button data-target="chest">胸</button></li>
+              <li><button data-target="back">背</button></li>
+              <li><button data-target="triceps">三頭肌</button></li>
+              <li><button data-target="biceps">二頭肌</button></li>
+              <li><button data-target="legs">腿</button></li>
+              <li><button data-target="shoulders">肩膀</button></li>
+              <li><button data-target="core">核心</button></li>
+            </ul>
+          </li>
+
+          <!-- ③ 一週菜單 -->
+          <li>
+            <button id="nav-plan-btn" type="button">
+              一週菜單
+            </button>
+          </li>
+
+          <!-- ④ 飲食建議 -->
+          <li>
+            <button id="nav-nutrition-btn" type="button">
+              飲食建議
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO 首頁封面 -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>打造你的專屬訓練與飲食計畫</h1>
+      <p>從胸、背、手臂、腿、肩膀到核心，搭配一週訓練菜單與飲食建議，讓你的健身更有系統。</p>
+      <button id="start-training-btn" class="btn-primary">
+        右上選擇訓練部位
+      </button>
+    </div>
+  </section>
+
+  <!-- 訓練內容區（預設隱藏，選擇部位後顯示） -->
+  <section class="training-panel hidden">
+    <div class="panel-header">
+      <div>
+        <h2 id="current-part-title">訓練動作</h2>
+        <p id="current-part-desc">請從上方選擇訓練部位開始。</p>
+      </div>
+
+      <button id="reroll-btn" class="btn-primary">重抽動作</button>
+    </div>
+
+    <div id="exercise-grid" class="exercise-grid"></div>
+  </section>
+
+  <!-- 一週訓練菜單區（AI 生成） -->
+  <section id="weekly-planner" class="weekly-planner">
+    <h2>AI 生成一週訓練菜單</h2>
+    <p>輸入一週想訓練幾天，我們會幫你平均安排胸、背、腿、肩、三頭、二頭、核心的訓練內容，並附上示範圖片。</p>
+
+    <div class="planner-controls">
+      <label for="days-input">每週訓練天數（1～7 天）：</label>
+      <input
+        id="days-input"
+        type="number"
+        min="1"
+        max="7"
+        value="3"
+      />
+      <button id="generate-plan-btn" class="btn-primary">
+        生成一週菜單
+      </button>
+    </div>
+
+    <div id="plan-result" class="plan-result"></div>
+  </section>
+
+    <!-- 飲食建議區（已加入身高與性別） -->
+  <section class="nutrition-planner">
+    <h2>飲食建議 / 每日熱量與營養素</h2>
+    <p>根據你的目標、身高、體重與活動量，產生每日熱量與三大營養素分配。</p>
+
+    <div class="nutrition-controls">
+
+      <div class="field-group">
+        <label for="sex-select">性別：</label>
+        <select id="sex-select">
+          <option value="male" selected>男性</option>
+          <option value="female">女性</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="height-input">身高（cm）：</label>
+        <input id="height-input" type="number" min="120" max="220" value="170" />
+      </div>
+
+      <div class="field-group">
+        <label for="weight-input">體重（kg）：</label>
+        <input id="weight-input" type="number" min="30" max="200" value="70" />
+      </div>
+
+      <div class="field-group">
+        <label for="goal-select">訓練目標：</label>
+        <select id="goal-select">
+          <option value="lose">減脂</option>
+          <option value="maintain" selected>維持</option>
+          <option value="gain">增肌</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="activity-select">活動量：</label>
+        <select id="activity-select">
+          <option value="low">低（久坐、偶爾運動）</option>
+          <option value="medium" selected>中（每週訓練 3–5 天）</option>
+          <option value="high">高（幾乎天天訓練）</option>
+        </select>
+      </div>
+
+      <button id="generate-nutrition-btn" class="btn-primary">
+        生成飲食建議
+      </button>
+    </div>
+
+    <div id="nutrition-result" class="nutrition-result"></div>
+  </section>
+
+
+  <footer class="site-footer">
+    <p>© 2025 Wayne Fitness. Keep training, keep improving.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
